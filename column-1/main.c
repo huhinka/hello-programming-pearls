@@ -3,6 +3,7 @@
 #include "base.h"
 #include "sort.h"
 #include "timeit.c"
+#include "../lib/mem_usage.c"
 
 void sort(char *phone_numbers_filename, char *output_filename)
 {
@@ -36,4 +37,5 @@ int main(int argc, char *argv[])
     }
 
     timeit(sort, argv[1], argv[2]);
+    show_mem_usage();
 }
