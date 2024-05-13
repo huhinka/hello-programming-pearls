@@ -22,13 +22,3 @@ c++ code:
 ```c++
 g++ <c++ file> && ./a.out && rm a.out
 ```
-
-## Column 1
-
-```c
-cd column-1
-
-// generator input set
-gcc ./input-sets/generator.c
-./a.out
-```
