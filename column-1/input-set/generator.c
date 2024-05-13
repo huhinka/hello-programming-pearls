@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "../base.h"
 
-#define N 10000000
-
-const int MAX_SIZE = 3 * N / 4; // the size of the input set.
+const int MAX_SIZE = N / 10; // the size of the input set.
 int set[N];
 
 /**

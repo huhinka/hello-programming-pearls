@@ -1,7 +1,31 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
-#include "bitmap.h"
+#include "base.h"
+#include "sort.h"
+#include "timeit.c"
+
+void sort(char *phone_numbers_filename, char *output_filename)
+{
+    // phase 2: insert present elements into the set
+    FILE *input = fopen(phone_numbers_filename, "r");
+    if (!input)
+    {
+        fprintf(stderr, "Could not open file '%s' for reading.\n", phone_numbers_filename);
+    }
+    char line[256];
+    while (fgets(line, sizeof(line), input) != NULL)
+    {
+        on_phone_number(atoi(line));
+    }
+    fclose(input);
+
+    on_read_complete();
+
+    // phase 3: write sorted output
+    FILE *output = fopen(output_filename, "w");
+    write_into_output(output);
+    fclose(output);
+}
 
 int main(int argc, char *argv[])
 {
@@ -11,31 +35,5 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    char *phone_numbers_filename = argv[1];
-    char *output_filename = argv[2];
-
-    // phase 2: insert present elements into the set
-    FILE *input = fopen(phone_numbers_filename, "r");
-    if (!input)
-    {
-        fprintf(stderr, "Could not open file '%s' for reading.\n", phone_numbers_filename);
-        return 1;
-    }
-    char line[256];
-    while (fgets(line, sizeof(line), input) != NULL)
-    {
-        set(atoi(line));
-    }
-    fclose(input);
-
-    // phase 3: write sorted output
-    FILE *output = fopen(output_filename, "w");
-    for (int i = 0; i < N; i++)
-    {
-        if (test(i))
-        {
-            fprintf(output, "%d\n", i);
-        }
-    }
-    fclose(output);
+    timeit(sort, argv[1], argv[2]);
 }

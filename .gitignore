@@ -2,3 +2,7 @@
 
 a.out
 *.txt
+
+input-set-generator
+sort-by-bitmap
+sort-by-stdlib

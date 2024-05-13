@@ -1,4 +1,5 @@
-#define N 10000000
+#include "base.h"
+
 #define BITS_PER_WORD 32 // use int as word
 #define MASK 0x1f        // BITS_PER_WORD - 1
 #define SHIFT 5          // for bit operation
